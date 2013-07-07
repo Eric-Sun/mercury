@@ -17,8 +17,9 @@
         </jsp:include>
     </div>
     <ul class="breadcrumb">
-        <li><a href="/page/system/card/create.jsp">创建新的卡牌</a></li>
-
+        <li><a href="/page/system/card/createUnits.jsp">创建新的兵种卡牌</a></li>
+        <li><a href="/page/system/card/createEquipment.jsp">创建新的装备卡牌</a></li>
+        <li><a href="/page/system/card/createSquard.jsp">创建新的小队卡牌</a></li>
     </ul>
     <div class="body">
         <div>
@@ -28,12 +29,7 @@
                     <th>id</th>
                     <th>名称</th>
                     <th>图片地址</th>
-                    <th>卡牌类型</th>
-                    <th>最小攻击力</th>
-                    <th>最大攻击力</th>
-                    <th>最小防御力</th>
-                    <th>最大防御力</th>
-                    <th>兵种卡的最大允许士兵个数</th>
+                    <th>卡牌种类</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -42,12 +38,17 @@
                     <td>${dto.id}</td>
                     <td>${dto.name}</td>
                     <td>${dto.icon}</td>
-                    <td>${dto.cardType}</td>
-                    <td>${dto.attackMin}</td>
-                    <td>${dto.attackMax}</td>
-                    <td>${dto.defenceMin}</td>
-                    <td>${dto.defenceMax}</td>
-                    <td>${dto.randomSlotCount}</td>
+                    <td>
+                    <c:if test="${dto.cardType=='SQUARD'}">
+                         小队卡牌
+                    </c:if>
+                    <c:if test="${dto.cardType=='EQUIPMENT'}">
+                        装备卡牌
+                    </c:if>
+                    <c:if test="${dto.cardType=='UNITS'}">
+                        兵种卡牌
+                    </c:if>
+                    </td>
                     <td>
                         <div class="btn-group">
                             <a href="/system/card/show?id=${dto.id}" title="编辑"><i

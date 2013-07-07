@@ -26,7 +26,7 @@ public class DropGroupDAO {
 
     public void update(DropGroupVO dropGroupVO) {
         String sql = "update drop_group set name=?,data=?,update_time=now() where id=?";
-        j.update(sql, new Object[]{dropGroupVO.getName(), dropGroupVO.getData(), dropGroupVO.getId()});
+        j.update(sql, new Object[]{dropGroupVO.getName(), JSON.toJSONString(dropGroupVO.getData()), dropGroupVO.getId()});
     }
 
 

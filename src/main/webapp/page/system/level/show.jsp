@@ -42,10 +42,17 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">该等级的仓库上限</label>
+                <label class="control-label">该等级的装备仓库上限</label>
 
                 <div class="controls">
-                    <input type="text" name="storageSize" value="${vo.storageSize}">
+                    <input type="text" name="eStorageSize" value="${vo.EStorageSize}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">该等级的小队卡仓库上限</label>
+
+                <div class="controls">
+                    <input type="text" name="sStorageSize" value="${vo.SStorageSize}">
                 </div>
             </div>
             <div class="control-group">

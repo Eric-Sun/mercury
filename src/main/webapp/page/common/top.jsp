@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/system/config/list">系统变量</a></li>
                         <li><a href="/system/level/list">等级</a></li>
-                        <li><a href="/system/level/list">卡牌</a></li>
+                        <li><a href="/system/card/list">卡牌</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

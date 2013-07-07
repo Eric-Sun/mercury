@@ -22,13 +22,13 @@ public class LevelDAO {
     JdbcTemplate j;
 
     public void create(LevelVO level) {
-        String sql = "insert into level (level,exp,energy,storage_size,troop_size,create_time) values (?,?,?,?,?,now())";
-        j.update(sql, new Object[]{level.getLevel(), level.getExp(), level.getEnergy(), level.getStorageSize(), level.getTroopSize()});
+        String sql = "insert into level (level,exp,energy,s_storage_size,e_storage_size,troop_size,create_time) values (?,?,?,?,?,?,now())";
+        j.update(sql, new Object[]{level.getLevel(), level.getExp(), level.getEnergy(), level.getSStorageSize(), level.getEStorageSize(), level.getTroopSize()});
     }
 
     public void update(LevelVO level) {
-        String sql = "update level set level=?,exp=?,energy=?,storage_size=?,troop_size=? where id=?";
-        j.update(sql, new Object[]{level.getLevel(), level.getExp(), level.getEnergy(), level.getStorageSize(), level.getTroopSize(), level.getId()});
+        String sql = "update level set level=?,exp=?,energy=?,s_storage_size=?,e_storage_size=?,troop_size=? where id=?";
+        j.update(sql, new Object[]{level.getLevel(), level.getExp(), level.getEnergy(), level.getSStorageSize(), level.getEStorageSize(), level.getTroopSize(), level.getId()});
     }
 
     public void delete(long id) {

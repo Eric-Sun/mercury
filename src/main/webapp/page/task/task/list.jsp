@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html><html>
 <head>
-    <title>等级列表</title>
+    <title>系统变量列表</title>
     <jsp:include page="/page/common/include_static.jsp"/>
 </head>
 <body>
@@ -17,7 +17,7 @@
         </jsp:include>
     </div>
     <ul class="breadcrumb">
-        <li><a href="/page/system/level/create.jsp">创建新的等级</a></li>
+        <li><a href="/page/task/taskGroup/create.jsp">创建新的任务组</a></li>
 
     </ul>
     <div class="body">
@@ -26,30 +26,21 @@
                 <thead>
                 <tr>
                     <th>id</th>
-                    <th>等级</th>
-                    <th>当前等级经验上限</th>
-                    <th>当前等级能量上限</th>
-                    <th>当前等级装备卡仓库上限</th>
-                    <th>当前等级小队卡仓库上限</th>
-                    <th>当前等级部队上限</th>
+                    <th>名称</th>
+                    <th>所属任务组Id</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="dto" items="${voList}">
                     <td>${dto.id}</td>
-                    <td>${dto.level}</td>
-                    <td>${dto.exp}</td>
-                    <td>${dto.energy}</td>
-                    <td>${dto.EStorageSize}</td>
-                    <td>${dto.SStorageSize}</td>
-                    <td>${dto.troopSize}</td>
+                    <td>${dto.name}</td>
+                    <td>${dto.taskGroupId}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="/system/level/show?id=${dto.id}" title="编辑"><i
+                            <a href="/task/task/show?id=${dto.id}" title="编辑"><i
                                     class="icon-edit"></i></a> <a
-
-                            href="/system/level/delete?id=${dto.id}" rel="tooltip"
+                                href="/task/task/delete?id=${dto.id}" rel="tooltip"
                                 title="删除"><i class="icon-trash"></i></a>
                         </div>
                     </td>

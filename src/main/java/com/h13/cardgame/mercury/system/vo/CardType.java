@@ -9,7 +9,8 @@ package com.h13.cardgame.mercury.system.vo;
  */
 public enum CardType {
 
-    HUMAN,
+    SQUARD,
+    UNITS,
     EQUIPMENT
 
 }

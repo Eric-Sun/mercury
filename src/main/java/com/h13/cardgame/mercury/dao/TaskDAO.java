@@ -26,7 +26,7 @@ public class TaskDAO {
     JdbcTemplate j;
 
     public void create(TaskVO task) {
-        String sql = "insert into task (task_group_id,name,description,condition,drop_group_id,count,cooldown,last,create_time)" +
+        String sql = "insert into task (task_group_id,name,`description`,condition,drop_group_id,count,cooldown,last,create_time)" +
                 " values (?,?,?,?,?,?,?,?,now())";
         j.update(sql, new Object[]{task.getTaskGroupId(), task.getName(), task.getDescription(),
                 JSON.toJSONString(task.getCondition()), task.getDropGroupId(),
@@ -34,7 +34,7 @@ public class TaskDAO {
     }
 
     public void update(TaskVO task) {
-        String sql = "update task set task_group_id=?,name=?,description=?,condition=?,drop_group_id=?,count=?,cooldown=?,last=?,update_time=now()" +
+        String sql = "update task set task_group_id=?,name=?,description=?,`condition`=?,drop_group_id=?,count=?,cooldown=?,last=?,update_time=now()" +
                 "where id=?";
         j.update(sql, new Object[]{task.getTaskGroupId(), task.getName(), task.getDescription(),
                 JSON.toJSONString(task.getCondition()), task.getDropGroupId(),
@@ -47,7 +47,7 @@ public class TaskDAO {
     }
 
     public TaskVO show(long id) {
-        String sql = "select id,task_group_id,name,description,condition,drop_group_id,count,cooldown,last from task where id=?";
+        String sql = "select id,task_group_id,name,description,`condition`,drop_group_id,count,cooldown,last from task where id=?";
         return j.queryForObject(sql, new Object[]{}, new RowMapper<TaskVO>() {
             @Override
             public TaskVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -67,7 +67,7 @@ public class TaskDAO {
     }
 
     public List<TaskVO> list() {
-        String sql = "select id,task_group_id,name,description,condition,drop_group_id,count,cooldown,last from task";
+        String sql = "select id,task_group_id,name,description,`condition`,drop_group_id,count,cooldown,last from task";
         return j.query(sql, new Object[]{}, new RowMapper<TaskVO>() {
             @Override
             public TaskVO mapRow(ResultSet rs, int rowNum) throws SQLException {

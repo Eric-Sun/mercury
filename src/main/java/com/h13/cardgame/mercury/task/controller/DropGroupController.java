@@ -43,6 +43,8 @@ public class DropGroupController {
         DropGroupVO dropGroupVO = dropGroupService.show(id);
         ModelAndView mav = new ModelAndView("/task/dropGroup/show");
         mav.addObject("vo", dropGroupVO);
+        int sum = dropGroupVO.getData().getCardDropList().size() - 1;
+        mav.addObject("sum", sum);
         return mav;
     }
 

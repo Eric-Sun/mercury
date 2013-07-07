@@ -17,10 +17,10 @@
             <jsp:param name="current" value="3"/>
         </jsp:include>
     </div>
-    <form name="form" class="form-horizontal" method="post" action="/task/dropGroup/create" id="form">
+    <form name="form" class="form-horizontal" method="post" action="/task/dropGroup/update" id="form">
         <fieldset>
-            <input type="hidden" id="sum" value="0"/>
-
+            <input type="hidden" id="sum" value="${sum}"/>
+            <input type="hidden" name="id" value="${vo.id}"/>
             <div class="control-group">
                 <label class="control-label">名称</label>
 
@@ -32,22 +32,42 @@
                 <label class="control-label">随机的银币（如果全部写-1则认为不掉落金币）</label>
 
                 <div class="controls">
-                    <input type="text" name="silverMin" value="${vo.silverMin}"> ~
-                    <input type="text" name="silverMax" value="${vo.silverMax}">
+                    <input type="text" name="silverMin" value="${vo.data.silver.min}"> ~
+                    <input type="text" name="silverMax" value="${vo.data.silver.max}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">随机的经验（如果全部写-1则认为不掉落金币）</label>
 
                 <div class="controls">
-                    <input type="text" name="expMin" value="${vo.expMin}"> ~
-                    <input type="text" name="expMax" value="${vo.expMax}">
+                    <input type="text" name="expMin" value="${vo.data.exp.min}"> ~
+                    <input type="text" name="expMax" value="${vo.data.exp.max}">
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls"><a onclick="addCardDiv()">添加一个新的卡牌</a></div>
             </div>
-            <div id="cardDiv"></div>
+            <div id="cardDiv">
+                <c:forEach items="${vo.data.cardDropList}" var="cardVO" varStatus="status">
+                    <div id="cardIdDiv<c:out value="${status.index}"/>" class="control-group">
+                        <label class="control-label">卡牌的id</label>
+
+                        <div class="controls">
+                            <input type="text" name="cardId" value="${cardVO.cardId}"> <a
+                                onclick="removeCardDiv(<c:out value="${status.index}"/>)">删除此卡牌</a>
+                        </div>
+                    </div>
+                    <div id="weightDiv<c:out value="${status.index}"/>" class="control-group">
+                        <label class="control-label">这个卡牌的权重</label>
+
+                        <div class="controls">
+                            <input type="text" name="weight" value="${cardVO.weight}">
+                        </div>
+                    </div>
+
+                </c:forEach>
+
+            </div>
             <div class="control-group">
                 <div class="controls">
                     <input type="submit" class="btn btn-primary" value="提交"/>
@@ -78,12 +98,12 @@
         $("#sum").val(sum);
     }
 
-    function removeCardDiv() {
+    function removeCardDiv(index) {
+        $("#cardIdDiv" + index).remove();
+        $("#weightDiv" + index).remove();
         var sum = $("#sum").val();
-        $("#cardIdDiv" + sum).remove();
-        $("#weightDiv" + sum).remove();
         sum--;
-        $("#sum").val();
+        $("#sum").val(sum);
     }
 
 </script>

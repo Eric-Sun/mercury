@@ -1,5 +1,7 @@
 package com.h13.cardgame.mercury.system.vo;
 
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sunbo
@@ -12,12 +14,8 @@ public class CardVO {
     private String name;
     private String icon;
     private CardType cardType;
-    private int attackMin;
-    private int attackMax;
-    private int defenceMin;
-    private int defenceMax;
-    private int randomSlotCount;
     private String desc;
+    private Map<String,String> specData;
 
     @Override
     public String toString() {
@@ -26,12 +24,8 @@ public class CardVO {
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
                 ", cardType=" + cardType +
-                ", attackMin=" + attackMin +
-                ", attackMax=" + attackMax +
-                ", defenceMin=" + defenceMin +
-                ", defenceMax=" + defenceMax +
-                ", randomSlotCount=" + randomSlotCount +
                 ", desc='" + desc + '\'' +
+                ", specData=" + specData +
                 '}';
     }
 
@@ -67,51 +61,19 @@ public class CardVO {
         this.cardType = cardType;
     }
 
-    public int getAttackMin() {
-        return attackMin;
-    }
-
-    public void setAttackMin(int attackMin) {
-        this.attackMin = attackMin;
-    }
-
-    public int getAttackMax() {
-        return attackMax;
-    }
-
-    public void setAttackMax(int attackMax) {
-        this.attackMax = attackMax;
-    }
-
-    public int getDefenceMin() {
-        return defenceMin;
-    }
-
-    public void setDefenceMin(int defenceMin) {
-        this.defenceMin = defenceMin;
-    }
-
-    public int getDefenceMax() {
-        return defenceMax;
-    }
-
-    public void setDefenceMax(int defenceMax) {
-        this.defenceMax = defenceMax;
-    }
-
-    public int getRandomSlotCount() {
-        return randomSlotCount;
-    }
-
-    public void setRandomSlotCount(int randomSlotCount) {
-        this.randomSlotCount = randomSlotCount;
-    }
-
     public String getDesc() {
         return desc;
     }
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Map<String, String> getSpecData() {
+        return specData;
+    }
+
+    public void setSpecData(Map<String, String> specData) {
+        this.specData = specData;
     }
 }

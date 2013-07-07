@@ -17,8 +17,9 @@
             <jsp:param name="current" value="3"/>
         </jsp:include>
     </div>
-    <form name="form" class="form-horizontal" method="post" action="/system/card/create" id="form">
+    <form name="form" class="form-horizontal" method="post" action="/system/card/updateUnits" id="form">
         <fieldset>
+            <input type="hidden" name="id" value="${vo.id}"/>
             <div class="control-group">
                 <label class="control-label">名称</label>
 
@@ -34,13 +35,10 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">卡牌类型</label>
+                <label class="control-label">合成这个兵种需要那种装备卡</label>
 
                 <div class="controls">
-                    <select name="cardType">
-                        <option value="HUMAN">人物卡</option>
-                        <option value="EQUIPMENT">装备卡</option>
-                    </select>
+                    <input type="text" name="ECardId" value="${vo.ECardId}">
                 </div>
             </div>
             <div class="control-group">
@@ -72,12 +70,13 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">人物卡随机的士兵最大量</label>
+                <label class="control-label">合成这个兵种需要银币的数量</label>
 
                 <div class="controls">
-                    <input type="text" name="randomSlotCount" value="${vo.randomSlotCount}">
+                    <input type="text" name="silver" value="${vo.silver}">
                 </div>
             </div>
+
             <div class="control-group">
                 <label class="control-label">描述</label>
 

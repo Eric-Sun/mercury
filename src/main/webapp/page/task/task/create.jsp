@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>修改卡牌</title>
+    <title>创建任务</title>
     <jsp:include page="/page/common/include_static.jsp"/>
 </head>
 <body>
@@ -17,7 +17,7 @@
             <jsp:param name="current" value="3"/>
         </jsp:include>
     </div>
-    <form name="form" class="form-horizontal" method="post" action="/system/card/update" id="form">
+    <form name="form" class="form-horizontal" method="post" action="/task/task/update" id="form">
         <fieldset>
             <input type="hidden" value="${vo.id}" name="id"/>
 
@@ -29,70 +29,79 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">图片地址</label>
+                <label class="control-label">任务组id</label>
 
                 <div class="controls">
-                    <input type="text" name="icon" value="${vo.icon}">
+                    <input type="text" name="taskGroupId" value="${vo.taskGroupId}">
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label">卡牌类型</label>
 
-                <div class="controls">
-                    <select name="cardType">
-                        <option value="HUMAN"
-                                <c:if test="${vo.cardType=='HUMAN'}">selected="true"</c:if>
-                                >人物卡
-                        </option>
-                        <option value="EQUIPMENT"
-                                <c:if test="${vo.cardType=='EQUIPMENT'}">selected="true"</c:if>
-                                >装备卡
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">最小攻击力</label>
-
-                <div class="controls">
-                    <input type="text" name="attackMin" value="${vo.attackMin}">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">最大攻击力</label>
-
-                <div class="controls">
-                    <input type="text" name="attackMax" value="${vo.attackMax}">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">最小防御力</label>
-
-                <div class="controls">
-                    <input type="text" name="defenceMin" value="${vo.defenceMin}">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">最大防御力</label>
-
-                <div class="controls">
-                    <input type="text" name="defenceMax" value="${vo.defenceMax}">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">人物卡随机的士兵最大量</label>
-
-                <div class="controls">
-                    <input type="text" name="randomSlotCount" value="${vo.randomSlotCount}">
-                </div>
-            </div>
             <div class="control-group">
                 <label class="control-label">描述</label>
 
                 <div class="controls">
-                    <input type="text" name="desc" value="${vo.desc}">
+                    <input type="text" name="description" value="${vo.description}">
                 </div>
             </div>
+            <div class="control-group">
+                <label class="control-label">能量条件</label>
+
+                <div class="controls">
+                    <input type="text" name="energy" value="${vo.condition.energy}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">银币条件</label>
+
+                <div class="controls">
+                    <input type="text" name="silver" value="${vo.condition.silver}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">金币条件</label>
+
+                <div class="controls">
+                    <input type="text" name="gold" value="${vo.condition.gold}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">掉落组id</label>
+
+                <div class="controls">
+                    <input type="text" name="dropGroupId" value="${vo.dropGroupId}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">需要完成的次数</label>
+
+                <div class="controls">
+                    <input type="text" name="count" value="${vo.count}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">冷却时间</label>
+
+                <div class="controls">
+                    <input type="text" name="cooldown" value="${vo.cooldown}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">是否是最后一个任务</label>
+
+                <div class="controls">
+                    <select name="last">
+                        <option value="1"
+                                <c:if test="${vo.last==1}">selected="true"</c:if>
+                                >是
+                        </option>
+                        <option value="0"
+                                <c:if test="${vo.last==0}">selected="true"</c:if>
+                                >否
+                        </option>
+                    </select>
+                </div>
+            </div>
+
             <div class="control-group">
                 <div class="controls">
                     <input type="submit" class="btn btn-primary" value="提交"/>

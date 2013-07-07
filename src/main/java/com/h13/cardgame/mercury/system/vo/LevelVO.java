@@ -13,7 +13,8 @@ public class LevelVO {
     private int level;
     private int exp;
     private int energy;
-    private int storageSize;
+    private int eStorageSize;
+    private int sStorageSize;
     private int troopSize;
 
     public long getId() {
@@ -48,12 +49,20 @@ public class LevelVO {
         this.energy = energy;
     }
 
-    public int getStorageSize() {
-        return storageSize;
+    public int getEStorageSize() {
+        return eStorageSize;
     }
 
-    public void setStorageSize(int storageSize) {
-        this.storageSize = storageSize;
+    public void setEStorageSize(int eStorageSize) {
+        this.eStorageSize = eStorageSize;
+    }
+
+    public int getSStorageSize() {
+        return sStorageSize;
+    }
+
+    public void setSStorageSize(int sStorageSize) {
+        this.sStorageSize = sStorageSize;
     }
 
     public int getTroopSize() {

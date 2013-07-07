@@ -24,7 +24,7 @@ public class UserDAO {
 
     public List<Object[]> getUserInfo(long userId) {
 
-        final String select = "select r.name,p.name from role r, permission p , roles_permissions rp,user u"
+        final String select = "select r.name,p.name from role r, permission p , roles_permissions rp,admin_user u"
                 + " where u.id=? and u.role_id=r.id and rp.role_id= r.id and rp.permission_id=p.id";
         return j.query(select, new Object[]{userId}, new RowMapper() {
 
@@ -38,7 +38,7 @@ public class UserDAO {
     }
 
     public UserVO isUserExist(String userName, String userPwd) {
-        final String select = "select id,name,pwd from user where name=? and pwd=?";
+        final String select = "select id,name,pwd from admin_user where name=? and pwd=?";
         List<UserVO> list = j.query(select, new Object[]{userName, userPwd},
                 new BeanPropertyRowMapper(UserVO.class));
         if (list == null || list.size() == 0) {
@@ -49,13 +49,13 @@ public class UserDAO {
     }
 
     public List<UserVO> getAllUsers() {
-        String sql = "select u.id,u.name,u.pwd,r.id as role_id,r.name as role_name from user u,role r where u.role_id=r.id";
+        String sql = "select u.id,u.name,u.pwd,r.id as role_id,r.name as role_name from admin_user u,role r where u.role_id=r.id";
         return j.query(sql, new Object[]{}, new BeanPropertyRowMapper(
                 UserVO.class));
     }
 
     public UserVO getUser(long userId) {
-        String sql = "select u.id,u.name,u.pwd,r.id as role_id,r.name as role_name from user u,role r where u.role_id=r.id and u.id=?";
+        String sql = "select u.id,u.name,u.pwd,r.id as role_id,r.name as role_name from admin_user u,role r where u.role_id=r.id and u.id=?";
         List<UserVO> userList = j.query(sql, new Object[]{userId},
                 new BeanPropertyRowMapper(UserVO.class));
         if (userList == null || userList.size() == 0) {
@@ -66,19 +66,19 @@ public class UserDAO {
     }
 
     public void delete(long userId) {
-        String sql = "delete from user where id=?";
+        String sql = "delete from admin_user where id=?";
         j.update(sql, new Object[]{userId});
     }
 
     public void update(long userId, String name, String pwd, long roleId) {
-        String sql = "update user set name=?,pwd=md5(?),role_id=? where id=?";
+        String sql = "update admin_user set name=?,pwd=md5(?),role_id=? where id=?";
         j.update(sql, new Object[]{name, pwd, roleId, userId});
 
     }
 
     public long create(final String name, final String pwd, final long roleId) {
         KeyHolder kh = new GeneratedKeyHolder();
-        final String sql = "insert into user (name,pwd,role_id,create_time) values (?,md5(?),?,now())";
+        final String sql = "insert into admin_user (name,pwd,role_id,create_time) values (?,md5(?),?,now())";
         j.update(new PreparedStatementCreator() {
 
             @Override
@@ -96,11 +96,11 @@ public class UserDAO {
     }
 
     public boolean modifyPassowrd(String name, String oldpwd, String newpwd) {
-        String s1 = "select count(1) from user where name = ? and pwd=md5(?)";
+        String s1 = "select count(1) from admin_user where name = ? and pwd=md5(?)";
         int count = j.queryForInt(s1, new Object[]{name, oldpwd});
         if (count != 1)
             return false;
-        String s2 = "update user set pwd=md5(?) where name=? and pwd=md5(?)";
+        String s2 = "update admin_user set pwd=md5(?) where name=? and pwd=md5(?)";
         j.update(s2, new Object[]{newpwd, name, oldpwd});
         return true;
     }
