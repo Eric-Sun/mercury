@@ -20,6 +20,7 @@
         <li><a href="/page/system/card/createUnits.jsp">创建新的兵种卡牌</a></li>
         <li><a href="/page/system/card/createEquipment.jsp">创建新的装备卡牌</a></li>
         <li><a href="/page/system/card/createSquard.jsp">创建新的小队卡牌</a></li>
+        <li><a href="/page/system/card/createCaptain.jsp">创建新的小队卡牌</a></li>
     </ul>
     <div class="body">
         <div>
@@ -48,6 +49,9 @@
                     <c:if test="${dto.cardType=='UNITS'}">
                         兵种卡牌
                     </c:if>
+                        <c:if test="${dto.cardType=='CAPTAIN'}">
+                            队长卡牌
+                        </c:if>
                     </td>
                     <td>
                         <div class="btn-group">

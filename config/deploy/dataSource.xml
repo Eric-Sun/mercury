@@ -18,10 +18,10 @@
 			  <value>jdbc:mysql://localhost:3306/cardgame</value>
 		</property>
 		<property name="user">
-			<value>lemon</value>
+			<value>cg</value>
 		</property>
 		<property name="password">
-			<value>lemon001)(</value>
+			<value>cg1#pwd</value>
 		</property>
 		<property name="minPoolSize" value="10" />  
 	    <property name="maxPoolSize" value="20" />  

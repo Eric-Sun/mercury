@@ -52,7 +52,7 @@ public class CardService {
             sCard.setMaxSlot(card.getSpecData().get("maxSlot"));
             sCard.setMinSlot(card.getSpecData().get("minSlot"));
             return sCard;
-        } else {
+        } else if (card.getCardType() == CardType.UNITS) {
             UnitsCardVO uCard = new UnitsCardVO();
             uCard.setName(card.getName());
             uCard.setDesc(card.getDesc());
@@ -65,6 +65,13 @@ public class CardService {
             uCard.setECardId(card.getSpecData().get("eCardId"));
             uCard.setSilver(card.getSpecData().get("silver"));
             return uCard;
+        } else {
+            CaptainCardVO captain = new CaptainCardVO();
+            captain.setName(card.getName());
+            captain.setId(card.getId());
+            captain.setIcon(card.getIcon());
+            captain.setDesc(card.getDesc());
+            return captain;
         }
     }
 
@@ -156,5 +163,17 @@ public class CardService {
         map.put("defenceMin", unitsCardVO.getDefenceMin());
         card.setSpecData(map);
         cardDAO.update(card);
+    }
+
+    public void createCaptain(CaptainCardVO captainCardVO) {
+        CardVO card = new CardVO();
+        card.setIcon(captainCardVO.getIcon());
+        card.setName(captainCardVO.getName());
+        card.setDesc(captainCardVO.getDesc());
+        card.setId(captainCardVO.getId());
+        card.setCardType(CardType.CAPTAIN);
+        Map<String, String> map = new HashMap<String, String>();
+        card.setSpecData(map);
+        cardDAO.create(card);
     }
 }

@@ -11,6 +11,8 @@ public enum CardType {
 
     SQUARD,
     UNITS,
-    EQUIPMENT
+    EQUIPMENT,
+    CAPTAIN,
+    SKILL
 
 }

@@ -48,9 +48,13 @@ public class CardController {
             ModelAndView mav = new ModelAndView("/system/card/showEquipment");
             mav.addObject("vo", (EquipmentCardVO) card);
             return mav;
-        } else {
+        } else if (card instanceof UnitsCardVO) {
             ModelAndView mav = new ModelAndView("/system/card/showUnits");
             mav.addObject("vo", (UnitsCardVO) card);
+            return mav;
+        } else {
+            ModelAndView mav = new ModelAndView("/system/card/showCaptain");
+            mav.addObject("vo", (CaptainCardVO) card);
             return mav;
         }
     }
@@ -69,6 +73,14 @@ public class CardController {
         ModelAndView mav = new ModelAndView("redirect:/system/card/list");
         return mav;
     }
+
+    @RequestMapping("/createCaptain")
+    public ModelAndView createCaptain(CaptainCardVO captainCardVO, HttpServletRequest request, HttpServletResponse response) {
+        cardService.createCaptain(captainCardVO);
+        ModelAndView mav = new ModelAndView("redirect:/system/card/list");
+        return mav;
+    }
+
 
     @RequestMapping("/createSquard")
     public ModelAndView createSquard(SquardCardVO squardCardVO, HttpServletRequest request, HttpServletResponse response) {
